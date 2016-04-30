@@ -4,7 +4,7 @@
 #
 Name     : libpcap
 Version  : 1.7.4
-Release  : 13
+Release  : 14
 URL      : http://www.tcpdump.org/release/libpcap-1.7.4.tar.gz
 Source0  : http://www.tcpdump.org/release/libpcap-1.7.4.tar.gz
 Summary  : No detailed summary available
