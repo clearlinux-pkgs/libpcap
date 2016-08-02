@@ -5,3 +5,5 @@
 libnl-dev
 libusb-dev
 dbus-dev
+bison
+flex
