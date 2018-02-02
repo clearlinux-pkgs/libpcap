@@ -4,7 +4,7 @@
 #
 Name     : libpcap
 Version  : 1.8.1
-Release  : 17
+Release  : 18
 URL      : http://www.tcpdump.org/release/libpcap-1.8.1.tar.gz
 Source0  : http://www.tcpdump.org/release/libpcap-1.8.1.tar.gz
 Summary  : No detailed summary available
