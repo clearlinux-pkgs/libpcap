@@ -6,7 +6,7 @@
 #
 Name     : libpcap
 Version  : 1.9.0
-Release  : 20
+Release  : 21
 URL      : http://www.tcpdump.org/release/libpcap-1.9.0.tar.gz
 Source0  : http://www.tcpdump.org/release/libpcap-1.9.0.tar.gz
 Source99 : http://www.tcpdump.org/release/libpcap-1.9.0.tar.gz.sig
@@ -19,9 +19,12 @@ Requires: libpcap-license
 Requires: libpcap-man
 BuildRequires : bison
 BuildRequires : buildreq-cmake
+BuildRequires : buildreq-configure
 BuildRequires : dbus-dev
 BuildRequires : flex
+BuildRequires : glibc-dev
 BuildRequires : libnl-dev
+BuildRequires : pkgconfig(dbus-1)
 
 %description
 To report a security issue please send an e-mail to security@tcpdump.org.
@@ -83,12 +86,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1532527400
+export SOURCE_DATE_EPOCH=1536133223
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1532527400
+export SOURCE_DATE_EPOCH=1536133223
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/libpcap
 cp LICENSE %{buildroot}/usr/share/doc/libpcap/LICENSE
@@ -120,19 +123,6 @@ cp LICENSE %{buildroot}/usr/share/doc/libpcap/LICENSE
 /usr/include/pcap/vlan.h
 /usr/lib64/libpcap.so
 /usr/lib64/pkgconfig/libpcap.pc
-
-%files lib
-%defattr(-,root,root,-)
-/usr/lib64/libpcap.so.1
-/usr/lib64/libpcap.so.1.9.0
-
-%files license
-%defattr(-,root,root,-)
-/usr/share/doc/libpcap/LICENSE
-
-%files man
-%defattr(-,root,root,-)
-/usr/share/man/man1/pcap-config.1
 /usr/share/man/man3/pcap.3pcap
 /usr/share/man/man3/pcap_activate.3pcap
 /usr/share/man/man3/pcap_breakloop.3pcap
@@ -206,6 +196,19 @@ cp LICENSE %{buildroot}/usr/share/doc/libpcap/LICENSE
 /usr/share/man/man3/pcap_tstamp_type_name_to_val.3pcap
 /usr/share/man/man3/pcap_tstamp_type_val_to_description.3pcap
 /usr/share/man/man3/pcap_tstamp_type_val_to_name.3pcap
+
+%files lib
+%defattr(-,root,root,-)
+/usr/lib64/libpcap.so.1
+/usr/lib64/libpcap.so.1.9.0
+
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/libpcap/LICENSE
+
+%files man
+%defattr(-,root,root,-)
+/usr/share/man/man1/pcap-config.1
 /usr/share/man/man5/pcap-savefile.5
 /usr/share/man/man7/pcap-filter.7
 /usr/share/man/man7/pcap-linktype.7
