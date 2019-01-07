@@ -44,4 +44,3 @@ Configure miss: whether we can compile the netmap support
 Configure miss: bluetooth/bluetooth.h usability
 Configure miss: bluetooth/bluetooth.h presence
 Configure miss: bluetooth/bluetooth.h
-Configure miss: ibv_get_device_list in -libverbs

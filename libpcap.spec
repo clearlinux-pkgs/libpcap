@@ -6,37 +6,39 @@
 #
 Name     : libpcap
 Version  : 1.9.0
-Release  : 21
+Release  : 22
 URL      : http://www.tcpdump.org/release/libpcap-1.9.0.tar.gz
 Source0  : http://www.tcpdump.org/release/libpcap-1.9.0.tar.gz
 Source99 : http://www.tcpdump.org/release/libpcap-1.9.0.tar.gz.sig
 Summary  : Platform-independent network traffic capture library
 Group    : Development/Tools
 License  : BSD-3-Clause
-Requires: libpcap-bin
-Requires: libpcap-lib
-Requires: libpcap-license
-Requires: libpcap-man
+Requires: libpcap-bin = %{version}-%{release}
+Requires: libpcap-lib = %{version}-%{release}
+Requires: libpcap-license = %{version}-%{release}
+Requires: libpcap-man = %{version}-%{release}
 BuildRequires : bison
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-configure
 BuildRequires : dbus-dev
 BuildRequires : flex
-BuildRequires : glibc-dev
 BuildRequires : libnl-dev
-BuildRequires : pkgconfig(dbus-1)
+BuildRequires : rdma-core-dev
 
 %description
-To report a security issue please send an e-mail to security@tcpdump.org.
-To report bugs and other problems, contribute patches, request a
-feature, provide generic feedback etc please see the file
-[CONTRIBUTING](CONTRIBUTING.md) in the libpcap source tree root.
+Under Win32, libpcap is integrated in the WinPcap packet capture system.
+WinPcap provides a framework that allows libpcap to capture the packets
+under Windows 95, Windows 98, Windows ME, Windows NT 4, Windows 2000
+and Windows XP.
+WinPcap binaries and source code can be found at http://winpcap.polito.it:
+they include also a developer's pack with all the necessary to compile
+libpcap-based applications under Windows.
 
 %package bin
 Summary: bin components for the libpcap package.
 Group: Binaries
-Requires: libpcap-license
-Requires: libpcap-man
+Requires: libpcap-license = %{version}-%{release}
+Requires: libpcap-man = %{version}-%{release}
 
 %description bin
 bin components for the libpcap package.
@@ -45,9 +47,9 @@ bin components for the libpcap package.
 %package dev
 Summary: dev components for the libpcap package.
 Group: Development
-Requires: libpcap-lib
-Requires: libpcap-bin
-Provides: libpcap-devel
+Requires: libpcap-lib = %{version}-%{release}
+Requires: libpcap-bin = %{version}-%{release}
+Provides: libpcap-devel = %{version}-%{release}
 
 %description dev
 dev components for the libpcap package.
@@ -56,7 +58,7 @@ dev components for the libpcap package.
 %package lib
 Summary: lib components for the libpcap package.
 Group: Libraries
-Requires: libpcap-license
+Requires: libpcap-license = %{version}-%{release}
 
 %description lib
 lib components for the libpcap package.
@@ -86,15 +88,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1536133223
-%configure --disable-static
+export SOURCE_DATE_EPOCH=1546876697
+%configure --disable-static --enable-ipv6
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1536133223
+export SOURCE_DATE_EPOCH=1546876697
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/libpcap
-cp LICENSE %{buildroot}/usr/share/doc/libpcap/LICENSE
+mkdir -p %{buildroot}/usr/share/package-licenses/libpcap
+cp LICENSE %{buildroot}/usr/share/package-licenses/libpcap/LICENSE
 %make_install
 
 %files
@@ -203,11 +205,11 @@ cp LICENSE %{buildroot}/usr/share/doc/libpcap/LICENSE
 /usr/lib64/libpcap.so.1.9.0
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/libpcap/LICENSE
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/libpcap/LICENSE
 
 %files man
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 /usr/share/man/man1/pcap-config.1
 /usr/share/man/man5/pcap-savefile.5
 /usr/share/man/man7/pcap-filter.7
