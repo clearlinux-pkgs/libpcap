@@ -1,5 +1,5 @@
 PKG_NAME := libpcap
-URL = http://www.tcpdump.org/release/libpcap-1.9.0.tar.gz
+URL = https://www.tcpdump.org/release/libpcap-1.9.1.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common

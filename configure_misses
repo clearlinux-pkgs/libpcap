@@ -2,7 +2,7 @@ Configure miss: sys/ioccom.h usability
 Configure miss: sys/ioccom.h presence
 Configure miss: sys/ioccom.h
 Configure miss: net/pfvar.h
-Configure miss: strerror_s
+Configure miss: library containing putmsg
 Configure miss: whether ether_hostton is declared
 Configure miss: pthread_create in -lpthreads
 Configure miss: net/bpf.h usability

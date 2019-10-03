@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xE089DEF1D9C15D0D (release@tcpdump.org)
 #
 Name     : libpcap
-Version  : 1.9.0
-Release  : 22
-URL      : http://www.tcpdump.org/release/libpcap-1.9.0.tar.gz
-Source0  : http://www.tcpdump.org/release/libpcap-1.9.0.tar.gz
-Source99 : http://www.tcpdump.org/release/libpcap-1.9.0.tar.gz.sig
+Version  : 1.9.1
+Release  : 23
+URL      : https://www.tcpdump.org/release/libpcap-1.9.1.tar.gz
+Source0  : https://www.tcpdump.org/release/libpcap-1.9.1.tar.gz
+Source1 : https://www.tcpdump.org/release/libpcap-1.9.1.tar.gz.sig
 Summary  : Platform-independent network traffic capture library
 Group    : Development/Tools
 License  : BSD-3-Clause
@@ -26,19 +26,15 @@ BuildRequires : libnl-dev
 BuildRequires : rdma-core-dev
 
 %description
-Under Win32, libpcap is integrated in the WinPcap packet capture system.
-WinPcap provides a framework that allows libpcap to capture the packets
-under Windows 95, Windows 98, Windows ME, Windows NT 4, Windows 2000
-and Windows XP.
-WinPcap binaries and source code can be found at http://winpcap.polito.it:
-they include also a developer's pack with all the necessary to compile
-libpcap-based applications under Windows.
+To report a security issue please send an e-mail to security@tcpdump.org.
+To report bugs and other problems, contribute patches, request a
+feature, provide generic feedback etc please see the file
+[CONTRIBUTING](CONTRIBUTING.md) in the libpcap source tree root.
 
 %package bin
 Summary: bin components for the libpcap package.
 Group: Binaries
 Requires: libpcap-license = %{version}-%{release}
-Requires: libpcap-man = %{version}-%{release}
 
 %description bin
 bin components for the libpcap package.
@@ -50,6 +46,7 @@ Group: Development
 Requires: libpcap-lib = %{version}-%{release}
 Requires: libpcap-bin = %{version}-%{release}
 Provides: libpcap-devel = %{version}-%{release}
+Requires: libpcap = %{version}-%{release}
 
 %description dev
 dev components for the libpcap package.
@@ -81,19 +78,24 @@ man components for the libpcap package.
 
 
 %prep
-%setup -q -n libpcap-1.9.0
+%setup -q -n libpcap-1.9.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1546876697
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1570072507
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 %configure --disable-static --enable-ipv6
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1546876697
+export SOURCE_DATE_EPOCH=1570072507
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libpcap
 cp LICENSE %{buildroot}/usr/share/package-licenses/libpcap/LICENSE
@@ -108,7 +110,9 @@ cp LICENSE %{buildroot}/usr/share/package-licenses/libpcap/LICENSE
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/*.h
+/usr/include/pcap-bpf.h
+/usr/include/pcap-namedb.h
+/usr/include/pcap.h
 /usr/include/pcap/bluetooth.h
 /usr/include/pcap/bpf.h
 /usr/include/pcap/can_socketcan.h
@@ -121,6 +125,7 @@ cp LICENSE %{buildroot}/usr/share/package-licenses/libpcap/LICENSE
 /usr/include/pcap/pcap-inttypes.h
 /usr/include/pcap/pcap.h
 /usr/include/pcap/sll.h
+/usr/include/pcap/socket.h
 /usr/include/pcap/usb.h
 /usr/include/pcap/vlan.h
 /usr/lib64/libpcap.so
@@ -135,6 +140,7 @@ cp LICENSE %{buildroot}/usr/share/package-licenses/libpcap/LICENSE
 /usr/share/man/man3/pcap_datalink.3pcap
 /usr/share/man/man3/pcap_datalink_name_to_val.3pcap
 /usr/share/man/man3/pcap_datalink_val_to_description.3pcap
+/usr/share/man/man3/pcap_datalink_val_to_description_or_dlt.3pcap
 /usr/share/man/man3/pcap_datalink_val_to_name.3pcap
 /usr/share/man/man3/pcap_dispatch.3pcap
 /usr/share/man/man3/pcap_dump.3pcap
@@ -202,7 +208,7 @@ cp LICENSE %{buildroot}/usr/share/package-licenses/libpcap/LICENSE
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libpcap.so.1
-/usr/lib64/libpcap.so.1.9.0
+/usr/lib64/libpcap.so.1.9.1
 
 %files license
 %defattr(0644,root,root,0755)
