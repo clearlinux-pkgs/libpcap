@@ -6,10 +6,10 @@
 #
 Name     : libpcap
 Version  : 1.9.1
-Release  : 23
+Release  : 24
 URL      : https://www.tcpdump.org/release/libpcap-1.9.1.tar.gz
 Source0  : https://www.tcpdump.org/release/libpcap-1.9.1.tar.gz
-Source1 : https://www.tcpdump.org/release/libpcap-1.9.1.tar.gz.sig
+Source1  : https://www.tcpdump.org/release/libpcap-1.9.1.tar.gz.sig
 Summary  : Platform-independent network traffic capture library
 Group    : Development/Tools
 License  : BSD-3-Clause
@@ -79,26 +79,27 @@ man components for the libpcap package.
 
 %prep
 %setup -q -n libpcap-1.9.1
+cd %{_builddir}/libpcap-1.9.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1570072507
+export SOURCE_DATE_EPOCH=1604441798
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$CFLAGS -fno-lto "
-export FFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
 %configure --disable-static --enable-ipv6
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1570072507
+export SOURCE_DATE_EPOCH=1604441798
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libpcap
-cp LICENSE %{buildroot}/usr/share/package-licenses/libpcap/LICENSE
+cp %{_builddir}/libpcap-1.9.1/LICENSE %{buildroot}/usr/share/package-licenses/libpcap/bf0cb439d0ca55615b5060ee09d77af3ddc9518d
 %make_install
 
 %files
@@ -212,7 +213,7 @@ cp LICENSE %{buildroot}/usr/share/package-licenses/libpcap/LICENSE
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/libpcap/LICENSE
+/usr/share/package-licenses/libpcap/bf0cb439d0ca55615b5060ee09d77af3ddc9518d
 
 %files man
 %defattr(0644,root,root,0755)
