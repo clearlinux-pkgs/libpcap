@@ -26,6 +26,9 @@ Configure miss: net/raw.h
 Configure miss: sys/dlpi.h usability
 Configure miss: sys/dlpi.h presence
 Configure miss: sys/dlpi.h
+Configure miss: config/HaikuConfig.h usability
+Configure miss: config/HaikuConfig.h presence
+Configure miss: config/HaikuConfig.h
 Configure miss: dagapi.h usability
 Configure miss: dagapi.h presence
 Configure miss: dagapi.h
@@ -36,11 +39,12 @@ Configure miss: whether to enable remote packet capture
 Configure miss: whether to build optimizer debugging code
 Configure miss: whether to build parser debugging code
 Configure miss: dl_hp_ppa_info_t.dl_module_id_1
-Configure miss: if unaligned accesses fail
 Configure miss: linux/compiler.h usability
 Configure miss: linux/compiler.h presence
 Configure miss: linux/compiler.h
 Configure miss: whether we can compile the netmap support
+Configure miss: DPDK with pkg-config
+Configure miss: whether we can compile the DPDK support
 Configure miss: bluetooth/bluetooth.h usability
 Configure miss: bluetooth/bluetooth.h presence
 Configure miss: bluetooth/bluetooth.h

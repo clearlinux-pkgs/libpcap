@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xE089DEF1D9C15D0D (release@tcpdump.org)
 #
 Name     : libpcap
-Version  : 1.9.1
-Release  : 24
-URL      : https://www.tcpdump.org/release/libpcap-1.9.1.tar.gz
-Source0  : https://www.tcpdump.org/release/libpcap-1.9.1.tar.gz
-Source1  : https://www.tcpdump.org/release/libpcap-1.9.1.tar.gz.sig
+Version  : 1.10.0
+Release  : 25
+URL      : https://www.tcpdump.org/release/libpcap-1.10.0.tar.gz
+Source0  : https://www.tcpdump.org/release/libpcap-1.10.0.tar.gz
+Source1  : https://www.tcpdump.org/release/libpcap-1.10.0.tar.gz.sig
 Summary  : Platform-independent network traffic capture library
 Group    : Development/Tools
 License  : BSD-3-Clause
@@ -26,10 +26,9 @@ BuildRequires : libnl-dev
 BuildRequires : rdma-core-dev
 
 %description
-To report a security issue please send an e-mail to security@tcpdump.org.
-To report bugs and other problems, contribute patches, request a
-feature, provide generic feedback etc please see the file
-[CONTRIBUTING](CONTRIBUTING.md) in the libpcap source tree root.
+LIBPCAP 1.x.y
+=============
+[![Build Status](https://travis-ci.org/the-tcpdump-group/tcpdump.svg?branch=master)](https://travis-ci.org/the-tcpdump-group/libpcap)
 
 %package bin
 Summary: bin components for the libpcap package.
@@ -78,15 +77,15 @@ man components for the libpcap package.
 
 
 %prep
-%setup -q -n libpcap-1.9.1
-cd %{_builddir}/libpcap-1.9.1
+%setup -q -n libpcap-1.10.0
+cd %{_builddir}/libpcap-1.10.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1604441798
+export SOURCE_DATE_EPOCH=1610129244
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -96,10 +95,10 @@ export CXXFLAGS="$CXXFLAGS -fno-lto "
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1604441798
+export SOURCE_DATE_EPOCH=1610129244
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libpcap
-cp %{_builddir}/libpcap-1.9.1/LICENSE %{buildroot}/usr/share/package-licenses/libpcap/bf0cb439d0ca55615b5060ee09d77af3ddc9518d
+cp %{_builddir}/libpcap-1.10.0/LICENSE %{buildroot}/usr/share/package-licenses/libpcap/bf0cb439d0ca55615b5060ee09d77af3ddc9518d
 %make_install
 
 %files
@@ -165,6 +164,7 @@ cp %{_builddir}/libpcap-1.9.1/LICENSE %{buildroot}/usr/share/package-licenses/li
 /usr/share/man/man3/pcap_get_tstamp_precision.3pcap
 /usr/share/man/man3/pcap_geterr.3pcap
 /usr/share/man/man3/pcap_getnonblock.3pcap
+/usr/share/man/man3/pcap_init.3pcap
 /usr/share/man/man3/pcap_inject.3pcap
 /usr/share/man/man3/pcap_is_swapped.3pcap
 /usr/share/man/man3/pcap_lib_version.3pcap
@@ -209,7 +209,7 @@ cp %{_builddir}/libpcap-1.9.1/LICENSE %{buildroot}/usr/share/package-licenses/li
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libpcap.so.1
-/usr/lib64/libpcap.so.1.9.1
+/usr/lib64/libpcap.so.1.10.0
 
 %files license
 %defattr(0644,root,root,0755)
