@@ -1,50 +1,50 @@
-Configure miss: sys/ioccom.h usability
-Configure miss: sys/ioccom.h presence
-Configure miss: sys/ioccom.h
-Configure miss: net/pfvar.h
-Configure miss: library containing putmsg
-Configure miss: whether ether_hostton is declared
-Configure miss: pthread_create in -lpthreads
-Configure miss: net/bpf.h usability
-Configure miss: net/bpf.h presence
-Configure miss: net/bpf.h
-Configure miss: net/pfilt.h usability
-Configure miss: net/pfilt.h presence
-Configure miss: net/pfilt.h
-Configure miss: net/enet.h usability
-Configure miss: net/enet.h presence
-Configure miss: net/enet.h
-Configure miss: net/nit.h usability
-Configure miss: net/nit.h presence
-Configure miss: net/nit.h
-Configure miss: sys/net/nit.h usability
-Configure miss: sys/net/nit.h presence
-Configure miss: sys/net/nit.h
-Configure miss: net/raw.h usability
-Configure miss: net/raw.h presence
-Configure miss: net/raw.h
-Configure miss: sys/dlpi.h usability
-Configure miss: sys/dlpi.h presence
-Configure miss: sys/dlpi.h
-Configure miss: config/HaikuConfig.h usability
-Configure miss: config/HaikuConfig.h presence
+Configure miss: DPDK with pkg-config
+Configure miss: bluetooth/bluetooth.h
+Configure miss: bluetooth/bluetooth.h presence
+Configure miss: bluetooth/bluetooth.h usability
 Configure miss: config/HaikuConfig.h
-Configure miss: dagapi.h usability
-Configure miss: dagapi.h presence
+Configure miss: config/HaikuConfig.h presence
+Configure miss: config/HaikuConfig.h usability
 Configure miss: dagapi.h
-Configure miss: whether we have Septel API headers
-Configure miss: whether we have Myricom Sniffer API
+Configure miss: dagapi.h presence
+Configure miss: dagapi.h usability
+Configure miss: dl_hp_ppa_info_t.dl_module_id_1
+Configure miss: library containing putmsg
+Configure miss: linux/compiler.h
+Configure miss: linux/compiler.h presence
+Configure miss: linux/compiler.h usability
+Configure miss: net/bpf.h
+Configure miss: net/bpf.h presence
+Configure miss: net/bpf.h usability
+Configure miss: net/enet.h
+Configure miss: net/enet.h presence
+Configure miss: net/enet.h usability
+Configure miss: net/nit.h
+Configure miss: net/nit.h presence
+Configure miss: net/nit.h usability
+Configure miss: net/pfilt.h
+Configure miss: net/pfilt.h presence
+Configure miss: net/pfilt.h usability
+Configure miss: net/pfvar.h
+Configure miss: net/raw.h
+Configure miss: net/raw.h presence
+Configure miss: net/raw.h usability
+Configure miss: pthread_create in -lpthreads
+Configure miss: sys/dlpi.h
+Configure miss: sys/dlpi.h presence
+Configure miss: sys/dlpi.h usability
+Configure miss: sys/ioccom.h
+Configure miss: sys/ioccom.h presence
+Configure miss: sys/ioccom.h usability
+Configure miss: sys/net/nit.h
+Configure miss: sys/net/nit.h presence
+Configure miss: sys/net/nit.h usability
 Configure miss: whether TurboCap is supported
-Configure miss: whether to enable remote packet capture
+Configure miss: whether ether_hostton is declared
 Configure miss: whether to build optimizer debugging code
 Configure miss: whether to build parser debugging code
-Configure miss: dl_hp_ppa_info_t.dl_module_id_1
-Configure miss: linux/compiler.h usability
-Configure miss: linux/compiler.h presence
-Configure miss: linux/compiler.h
-Configure miss: whether we can compile the netmap support
-Configure miss: DPDK with pkg-config
+Configure miss: whether to enable remote packet capture
 Configure miss: whether we can compile the DPDK support
-Configure miss: bluetooth/bluetooth.h usability
-Configure miss: bluetooth/bluetooth.h presence
-Configure miss: bluetooth/bluetooth.h
+Configure miss: whether we can compile the netmap support
+Configure miss: whether we have Myricom Sniffer API
+Configure miss: whether we have Septel API headers
