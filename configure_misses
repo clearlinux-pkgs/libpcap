@@ -1,7 +1,7 @@
-Configure miss: DPDK with pkg-config
 Configure miss: bluetooth/bluetooth.h
 Configure miss: bluetooth/bluetooth.h presence
 Configure miss: bluetooth/bluetooth.h usability
+Configure miss: brew
 Configure miss: config/HaikuConfig.h
 Configure miss: config/HaikuConfig.h presence
 Configure miss: config/HaikuConfig.h usability
@@ -25,11 +25,9 @@ Configure miss: net/nit.h usability
 Configure miss: net/pfilt.h
 Configure miss: net/pfilt.h presence
 Configure miss: net/pfilt.h usability
-Configure miss: net/pfvar.h
 Configure miss: net/raw.h
 Configure miss: net/raw.h presence
 Configure miss: net/raw.h usability
-Configure miss: pthread_create in -lpthreads
 Configure miss: sys/dlpi.h
 Configure miss: sys/dlpi.h presence
 Configure miss: sys/dlpi.h usability
@@ -44,7 +42,6 @@ Configure miss: whether ether_hostton is declared
 Configure miss: whether to build optimizer debugging code
 Configure miss: whether to build parser debugging code
 Configure miss: whether to enable remote packet capture
-Configure miss: whether we can compile the DPDK support
 Configure miss: whether we can compile the netmap support
 Configure miss: whether we have Myricom Sniffer API
 Configure miss: whether we have Septel API headers
