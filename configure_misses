@@ -9,6 +9,7 @@ Configure miss: dagapi.h
 Configure miss: dagapi.h presence
 Configure miss: dagapi.h usability
 Configure miss: dl_hp_ppa_info_t.dl_module_id_1
+Configure miss: libdpdk with pkg-config
 Configure miss: library containing putmsg
 Configure miss: linux/compiler.h
 Configure miss: linux/compiler.h presence
