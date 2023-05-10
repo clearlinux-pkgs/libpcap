@@ -7,7 +7,7 @@
 #
 Name     : libpcap
 Version  : 1.10.4
-Release  : 30
+Release  : 31
 URL      : https://www.tcpdump.org/release/libpcap-1.10.4.tar.gz
 Source0  : https://www.tcpdump.org/release/libpcap-1.10.4.tar.gz
 Source1  : https://www.tcpdump.org/release/libpcap-1.10.4.tar.gz.sig
@@ -24,9 +24,9 @@ BuildRequires : dbus-dev
 BuildRequires : flex
 BuildRequires : libnl-dev
 BuildRequires : pkgconfig(dbus-1)
-BuildRequires : pkgconfig(libibverbs)
 BuildRequires : pkgconfig(libnl-genl-3.0)
 BuildRequires : pkgconfig(openssl)
+BuildRequires : rdma-core-dev
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
@@ -84,27 +84,44 @@ man components for the libpcap package.
 %prep
 %setup -q -n libpcap-1.10.4
 cd %{_builddir}/libpcap-1.10.4
+pushd ..
+cp -a libpcap-1.10.4 buildavx2
+popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680907879
+export SOURCE_DATE_EPOCH=1683750717
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 %configure --disable-static --enable-ipv6
 make  %{?_smp_mflags}
 
+unset PKG_CONFIG_PATH
+pushd ../buildavx2/
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3"
+export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
+%configure --disable-static --enable-ipv6
+make  %{?_smp_mflags}
+popd
 %install
-export SOURCE_DATE_EPOCH=1680907879
+export SOURCE_DATE_EPOCH=1683750717
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libpcap
 cp %{_builddir}/libpcap-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/libpcap/bf0cb439d0ca55615b5060ee09d77af3ddc9518d || :
+pushd ../buildavx2/
+%make_install_v3
+popd
 %make_install
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
@@ -115,6 +132,7 @@ cp %{_builddir}/libpcap-%{version}/LICENSE %{buildroot}/usr/share/package-licens
 
 %files dev
 %defattr(-,root,root,-)
+/V3/usr/lib64/libpcap.so
 /usr/include/pcap-bpf.h
 /usr/include/pcap-namedb.h
 /usr/include/pcap.h
@@ -213,6 +231,8 @@ cp %{_builddir}/libpcap-%{version}/LICENSE %{buildroot}/usr/share/package-licens
 
 %files lib
 %defattr(-,root,root,-)
+/V3/usr/lib64/libpcap.so.1
+/V3/usr/lib64/libpcap.so.1.10.4
 /usr/lib64/libpcap.so.1
 /usr/lib64/libpcap.so.1.10.4
 
