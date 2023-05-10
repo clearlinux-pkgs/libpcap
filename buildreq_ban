@@ -4,3 +4,4 @@
 #
 bluez-dev
 libusb-dev
+rdma-core-dev

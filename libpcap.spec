@@ -7,7 +7,7 @@
 #
 Name     : libpcap
 Version  : 1.10.4
-Release  : 31
+Release  : 32
 URL      : https://www.tcpdump.org/release/libpcap-1.10.4.tar.gz
 Source0  : https://www.tcpdump.org/release/libpcap-1.10.4.tar.gz
 Source1  : https://www.tcpdump.org/release/libpcap-1.10.4.tar.gz.sig
@@ -26,7 +26,6 @@ BuildRequires : libnl-dev
 BuildRequires : pkgconfig(dbus-1)
 BuildRequires : pkgconfig(libnl-genl-3.0)
 BuildRequires : pkgconfig(openssl)
-BuildRequires : rdma-core-dev
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
@@ -93,7 +92,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1683750717
+export SOURCE_DATE_EPOCH=1683750893
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
@@ -113,7 +112,7 @@ export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
 make  %{?_smp_mflags}
 popd
 %install
-export SOURCE_DATE_EPOCH=1683750717
+export SOURCE_DATE_EPOCH=1683750893
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libpcap
 cp %{_builddir}/libpcap-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/libpcap/bf0cb439d0ca55615b5060ee09d77af3ddc9518d || :
